@@ -2,8 +2,6 @@ import React, { Component, createRef } from "react";
 import classes from './Reg.module.css';
 import Icon from "./Icon.png";
 import { Link } from "react-router-dom";
-import axios from '../../axios/axios';
-import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { reg } from "../../utils/auth";
 
@@ -50,7 +48,7 @@ class Reg extends Component{
         else return(
             <div className={classes.Deks}>
                 <div className={classes.Form}>
-                    <img src={Icon} />
+                    <img src={Icon} alt="icon" />
                     <h1>Создание аккаунта</h1>
                     <p>Ниже введите свои регистрационные данные, чтобы использовать сервис</p>
                     <form ref={this.form}>

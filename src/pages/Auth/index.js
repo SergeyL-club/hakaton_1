@@ -48,7 +48,7 @@ class Auth extends Component{
         else return(
             <div className={classes.Deks}>
                 <div className={classes.Form}>
-                    <img src={Icon} />
+                    <img src={Icon} alt="icon" />
                     <h1>Вход</h1>
                     <p>Ниже введите свои регистрационные данные, чтобы использовать сервис</p>
                     <form ref={this.form}>
