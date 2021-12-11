@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from './personalArea.module.css'
 import { Link, Redirect } from 'react-router-dom'
 import { verify } from "../../utils/auth";
+import axios from "../../axios/axios";
 
 
 class PersonalArea extends Component{
@@ -30,6 +31,21 @@ class PersonalArea extends Component{
                     }
                 ]
             }
+        }
+    }
+
+    componentDidMount() {
+        let token = localStorage.getItem("token");
+        if(token) {
+            axios.get("/chat/getList", {
+                headers: {
+                    token
+                }
+            }).then(res => {
+                console.log(res.data);
+            }).catch(e => {
+                console.log(e);
+            })
         }
     }
 
