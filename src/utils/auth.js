@@ -28,7 +28,7 @@ export const auth = async (login, password, callback ) => {
 export const verify = async (token, callback) => {
   axios.get("/account/verifyToken", {
     params: {
-      token: token
+      token
     }
   })
   .then(resVerify => {

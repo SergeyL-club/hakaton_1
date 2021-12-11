@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import classes from './personalArea.module.css'
 import { Link, Redirect } from 'react-router-dom'
-import { verify } from "../../utils/auth";
 import axios from "../../axios/axios";
 import NewChat from "../NewChat/NewChat";
 
@@ -10,13 +9,14 @@ class PersonalArea extends Component{
     constructor(props){
         super(props);
         
-        let token = localStorage.getItem("token"); 
-        if(!token || !(verify(token, (isAuth) => { return isAuth }))) {
+        let token = localStorage.getItem("token");
+        if(!token) {
             this.state = {
                 redirect: true
             }
         } else {
             this.state = {
+                redirect: false,
                 chats: [],
                 con: [],
                 isNewChatForm: false
@@ -28,6 +28,16 @@ class PersonalArea extends Component{
     componentDidMount() {
         let token = localStorage.getItem("token");
         if(token) {
+            axios.get("/account/verifyToken", {
+                headers: {
+                    token
+                }
+            }).catch(e => {
+                localStorage.clear();
+                this.setState({
+                    redirect: true
+                });
+            })
             axios.get("/chat/getList", {
                 headers: {
                     token

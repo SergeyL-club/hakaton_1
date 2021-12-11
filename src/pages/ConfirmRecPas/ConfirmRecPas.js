@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from './ConfirmRecPas.module.css'
 import Icon from './Icon.png'
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import axios from "../../axios/axios";
 
 class ConfirmRecPas extends Component{
