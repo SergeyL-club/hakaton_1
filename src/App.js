@@ -12,6 +12,7 @@ import Reg from './pages/Reg/index'
 import RecoveryPassword from './pages/RecoveryPassword/RecoveryPassword'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import NewChat from './pages/NewChat/NewChat'
+import ConfirmRecPas from './pages/ConfirmRecPas/ConfirmRecPas'
 
 
 export default class App extends Component {
@@ -33,6 +34,7 @@ export default class App extends Component {
           <Route exact path='/RecPas' component={RecoveryPassword}/>
           <Route exact path='/ChangePassword' component={ChangePassword}/>
           <Route exact path='/NewChat' component={NewChat}/>
+          <Route exact path='/ConfirmRecPas' component={ConfirmRecPas}/>
 
 
           <Route path="*" component={NotFound404} />

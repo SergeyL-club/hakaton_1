@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import classes from './RecoveryPassword.module.css'
+import classes from './ConfirmRecPas.module.css'
 import Icon from './Icon.png'
 import { Link, Redirect } from "react-router-dom";
 import axios from "../../axios/axios";
 
-class RecoveryPassword extends Component{
+class ConfirmRecPas extends Component{
 
     constructor(props) {
         super(props);
@@ -31,19 +31,21 @@ class RecoveryPassword extends Component{
         }   
     }
 
-    recPas() {
-        let login = document.querySelector('#login').value
-        axios.get(`/account/changePasswordRequest`, {
+    ConfirmRecPas() {
+        let code = document.querySelector('#code').value
+        let password = document.querySelector('#password').value
+        axios.get(`/account/changePassword`, {
             params: {
-                login
+                code, password
             }
         })
         .then((res) => {
             if(res.status === 200){
                 console.log('Дада');
+                localStorage.clear();
                 this.setState({
                     redirectAuth: true
-                })
+                });
             }
         })
         .catch((e) => {
@@ -52,7 +54,7 @@ class RecoveryPassword extends Component{
     }
     
     render(){
-        if(this.state.redirectAuth) return <Redirect to='/ConfirmRecPas' />
+        if(this.state.redirectAuth) return <Redirect to="/auth" />
         if(this.state.redirect) return <Redirect to="/personalArea" />
         else return(
             <div className={classes.Deks}>
@@ -61,14 +63,10 @@ class RecoveryPassword extends Component{
                     <h1>Восстановление пароля</h1>
                     <p>Ниже, введите свой адрес эл. почты или никнейм, на него Вам придёт ссылка на восстановление пароля</p>
                     <form>
-                        <input placeholder="Никнейм или Email" type='text' id="login"/>
+                        <input placeholder="Введите код, который вам пришел" type='text' id="code"/>
+                        <input placeholder="Введите новый пароль" type='password' id="password"/>
                         <div className={classes.Buttons}>
-                            <Link to={{
-                                pathname: '/ConfirmRecPas'
-                            }}>
-                                Уже пришел код?
-                            </Link>
-                            <button type="button" onClick={() => this.recPas()}>Отправить</button>
+                            <button type="button" onClick={() => this.ConfirmRecPas()}>Сменить</button>
                         </div>
                     </form>
                 </div>
@@ -77,4 +75,4 @@ class RecoveryPassword extends Component{
     }
 }
 
-export default RecoveryPassword
+export default ConfirmRecPas
