@@ -10,7 +10,7 @@ class PersonalArea extends Component{
         super(props);
         
         let token = localStorage.getItem("token"); 
-        if(!token && !(verify(token, (isAuth) => { return isAuth }))) {
+        if(!token || !(verify(token, (isAuth) => { return isAuth }))) {
             this.state = {
                 redirect: true
             }
