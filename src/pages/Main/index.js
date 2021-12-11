@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import classes from './main.module.css'
 import {Link, NavLink} from 'react-router-dom'
 import Icon from './Icon.png'
+import { connect } from 'react-redux'
 
-export default class Main extends Component {
+class Main extends Component {
   render() {
     return (
       <div className={classes.Main}>
@@ -19,3 +20,5 @@ export default class Main extends Component {
     )
   }
 }
+
+export default Main
