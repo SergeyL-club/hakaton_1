@@ -12,6 +12,42 @@
     background-color: white;
 }
 
+.ContactsNot{
+    text-align: center;
+    width: 28%;
+    height: 100%;
+    padding: 25px;
+    background-color: white;
+}
+
+.ContactsNot h1{
+    font-size: 18px;
+    background: -webkit-linear-gradient(90deg, #021af8, #919cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.NewChat{
+    margin-top: 25px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(75, 90, 230, 0.5); /* Параметры тени */
+    padding: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: ease-in-out 0.4s;
+    border-radius: 15px;
+}
+
+.NewChat a{
+    width: 100%;
+    height: 100%;
+}
+
+.NewChat:hover{
+    box-shadow: 0 0 10px rgba(75, 90, 230, 0.9); /* Параметры тени */
+}
+
 .PersonalArea .Contacts .Contact{
     padding: 15px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */

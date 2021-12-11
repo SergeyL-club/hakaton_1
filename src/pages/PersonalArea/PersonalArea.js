@@ -17,6 +17,7 @@ class PersonalArea extends Component{
         } else {
             this.state = {
                 chats: [],
+                con: []
             }
         }
     }
@@ -42,8 +43,15 @@ class PersonalArea extends Component{
         if(this.state.redirect) return <Redirect to="/" />
         else return(
             <div className={classes.PersonalArea}>
-                {this.state.chats.length > 0 ? (
+                {this.state.con.length > 0 ? (
                    <div className={classes.Contacts}>
+                       <div className={classes.NewChat}>
+                                <Link to={{
+                                    pathname: '/NewChat'
+                                }}>
+                                    +
+                                </Link>
+                        </div>
                    {this.state.chats.map((item, key) => 
                        <Link key={key}
                        to='/Auth'>
@@ -53,9 +61,18 @@ class PersonalArea extends Component{
                        </Link>  
                    )}
               </div>) : (
-                  <div className={classes.Contacts}>
-                      <h1>Чатов нету :(</h1>
-                    </div>
+                  <div className={classes.ContactsNot}>
+                      <h1>Жаль, но чатов нет. <br/> НОООО - вы можете его создать :)</h1>
+                    <div className={classes.NewChat}>
+                                <Link to={{
+                                    pathname: '/NewChat'
+                                }}>
+                                    <h1>+</h1>
+                                </Link>
+                    </div>  
+                  </div>
+                  
+                    
               )}
                <div className={classes.Block_message}>
                     <h1>Выбирите человека</h1>
