@@ -15,7 +15,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "set HTTPS=true&&react-scripts start",
+    "start": "set PORT=80 && set HTTPS=true && react-scripts start",
     "start-http": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
