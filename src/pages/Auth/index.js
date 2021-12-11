@@ -1,11 +1,27 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import classes from './Auth.module.css'
 import { connect } from "react-redux";
 import Icon from './Icon.png'
 import { Link } from "react-router-dom";
 import  {auth}  from '../../store/actions/Auth'
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 class Auth extends Component{
+
+    constructor(props) {
+        super(props);
+        let token = localStorage.getItem("token");
+        if(token) {
+            this.state = {
+                redirect: true
+            }
+        }
+        else {
+            this.state = {
+                redirect: false
+            }
+        }
+    }
 
     componentDidMount(){
         document.title="Регистрация"
@@ -26,7 +42,8 @@ class Auth extends Component{
             this.props.auth(login, String(password));
           };
 
-        return(
+        if(this.state.redirect) return <Redirect to="/main" />
+        else return(
             <div className={classes.Deks}>
                 <div className={classes.Form}>
                     <img src={Icon} />
