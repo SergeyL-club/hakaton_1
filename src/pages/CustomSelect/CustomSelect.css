@@ -1,0 +1,26 @@
+.Item{
+  list-style-type: none;
+  margin-right: auto;
+  display: flex;
+}
+.Open{
+  display: block;
+  width: 120px;
+  position: absolute;
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+.Close{
+  display: none;
+}
+.Item input {
+  width: 15px;
+  float: left;
+  margin-left: 0;
+  margin-left: auto;
+  height: 15px;
+}
+.Item label{
+  width: 100%;
+}

@@ -54,7 +54,7 @@ class PersonalArea extends Component{
             <>
                 { this.state.isNewChatForm ? <NewChat setClose={this.setCloseFormNewChat} /> : null }
                 <div className={classes.PersonalArea}>
-                    {this.state.con.length > 0 ? (
+                    {this.state.chats.length > 0 ? (
                     <div className={classes.Contacts}>
                         <div className={classes.NewChat}>
                                     <Link to={{

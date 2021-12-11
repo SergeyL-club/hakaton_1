@@ -29,7 +29,7 @@ class RecoveryPassword extends Component{
             }
         }
 
-        let login = document.querySelector('#login')
+        // let login = document.querySelector('#login')
         axios.get(`/account/changePasswordRequest`, {})
     }
 
