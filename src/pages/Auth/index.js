@@ -7,6 +7,21 @@ import  {auth}  from '../../store/actions/Auth'
 
 class Auth extends Component{
 
+    constructor(props) {
+        super(props);
+        let token = localStorage.getItem("token");
+        if(token) {
+            this.state = {
+                redirect: true
+            }
+        }
+        else {
+            this.state = {
+                redirect: false
+            }
+        }
+    }
+
     componentDidMount(){
         document.title="Регистрация"
         let inputs = document.querySelectorAll('input')

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { SocketContext } from './contexts/socket.context'
-import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { autoLogin } from './store/actions/Auth'
+import Layout from './hoc/Layout/Layout'
 
 
 
@@ -21,23 +22,40 @@ class App extends Component {
   
 
   render() {
+    function routerUser(user, role) {
+      switch (user) {
+        case false:
+          return (
+            <Switch>
+              <Route path="/" exact component={Main} />
+              <Route path="/auth" exact component={Auth}/>
+              <Route path="/regist" exact component={Reg}/>
+              <Route path="*" component={NotFound404} />
+            </Switch>
+          );
+        case true:
+                return (
+                  <Switch>
+                    <Route path="/" exact component={Main} />
+                    <Route path="/auth" exact component={() => (user ? <Redirect to='/personalArea' /> : <Redirect to='/auth' />)}/>
+                    <Route path="/regist" exact component={() => (user ? <Redirect to='/item' /> : <Redirect to='/regist' />)}/>
+                    <Route path="/personalArea" exact component={PersonalArea}/>
+                    <Route path="/Room" exact component={Room} />
+                    <Route path="/RecPas" exact component={RecoveryPassword} />
+                    <Route path="/ChangePass" exact component={ChangePassword} />
+                    <Route path="*" component={NotFound404} />
+                  </Switch>
+                )
+              default:
+                break;
+            }
+    }
+
     return (
-      <BrowserRouter>
-        <Switch>
-
-          <Route exact path="/room/:id" component={Room} />
-          <Route exact path="/" component={Main} />
-          <Route exact path='/personalArea' component={PersonalArea}/>
-          <Route exact path="/Auth"  component={Auth}/>
-          <Route exact path='/Reg' component={Reg}/>
-          <Route exact path='/RecPas' component={RecoveryPassword}/>
-          <Route exact path='/ChangePassword' component={ChangePassword}/>
-
-
-          <Route path="*" component={NotFound404} />
-        </Switch>
-      </BrowserRouter>
-    )
+      <Layout>
+        {routerUser(this.props.isAuth, String(this.props.role))}
+      </Layout>
+    );
   }
 }
 
