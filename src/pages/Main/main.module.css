@@ -1,0 +1,42 @@
+.Main{
+    height: 100vh;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.Main_content{
+    width: 40%;
+}
+
+.Main_content h1{
+    font-size: 110px;
+    background: -webkit-linear-gradient(-90deg, #021af8, #919cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.Main_content p{
+    font-size: 24px;
+    color: #273CFF;
+    margin-bottom: 25px;
+}
+
+.Main_content a{
+    margin-top: 25px;
+    text-decoration: none;
+    background: linear-gradient(180deg, #0B23FF 0%, rgba(12, 36, 255, 0.38) 182.22%);
+    border-radius: 30px;
+    border: none;
+    color: white;
+    padding: 8px 106px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+}
+
+.Main_content a:hover{
+    opacity: 0.6;
+}

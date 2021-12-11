@@ -1,0 +1,50 @@
+.PersonalArea{
+    height: 100vh;
+    width: 100%;
+    background-color: #F8F8F8;
+    display: flex;
+}
+
+.PersonalArea .Contacts{
+    width: 28%;
+    height: 100%;
+    padding: 25px;
+    background-color: white;
+}
+
+.PersonalArea .Contacts .Contact{
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+    margin-bottom: 15px;
+    transition: ease-in-out 0.3s;
+    cursor: pointer;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.PersonalArea a{
+    text-decoration: none;
+}
+
+.PersonalArea .Contacts .Contact h1{
+    background: -webkit-linear-gradient(90deg, #021af8, #919cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.PersonalArea .Contacts .Contact:hover{
+    box-shadow: 0 0 10px rgba(75, 90, 230, 0.5); /* Параметры тени */
+}
+
+.PersonalArea .Block_message{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PersonalArea .Block_message h1{
+    background-color: #E5E5E5;
+    padding: 8px 46px;
+    border-radius: 25px;
+}
