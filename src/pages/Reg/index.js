@@ -36,7 +36,7 @@ class Reg extends Component{
     registrationSend() {
         let nickname = this.form.current.nickname.value.trim();
         let email = this.form.current.mail.value.trim();
-        let password = this.form.current.mail.value.trim();
+        let password = this.form.current.password.value.trim();
 
         reg(nickname, password, email, (isAuth) => {
             this.setState({

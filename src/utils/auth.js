@@ -52,9 +52,9 @@ export const verify = async (token, callback) => {
 export const reg = async (nickname, password, email, callback) => {
   axios.get("/account/registration", {
     params: {
-      nickname,
-      password,
-      email
+      nickname: nickname,
+      password: password,
+      email: email
     }
   })
   .then(res => {
