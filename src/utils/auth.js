@@ -25,7 +25,7 @@ export const auth = async (login, password, callback ) => {
   });
 }
 
-const verify = async (token, callback) => {
+export const verify = async (token, callback) => {
   axios.get("/account/verifyToken", {
     params: {
       token: token

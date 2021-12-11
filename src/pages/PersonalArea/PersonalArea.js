@@ -1,30 +1,41 @@
 import React, { Component } from "react";
 import classes from './personalArea.module.css'
-import {NavLink, Link} from 'react-router-dom'
+import {NavLink, Link, Redirect} from 'react-router-dom'
+import { verify } from "../../utils/auth";
 
 
 class PersonalArea extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            Contacts: [
-                {
-                    name: 'Данил',
-                    surname: 'Ленченков'
-                },
-                {
-                    name: 'Сергей',
-                    surname: 'Лапшин',
-                },
-                {
-                    name: 'Никита',
-                    surname: 'Сарычев',
-                }
-            ]
+        
+        let token = localStorage.getItem("token"); 
+        if(!token && verify(token, (isAuth) => { return isAuth })) {
+            this.state = {
+                redirect: true
+            }
+        } else {
+            this.state = {
+                Contacts: [
+                    {
+                        name: 'Данил',
+                        surname: 'Ленченков'
+                    },
+                    {
+                        name: 'Сергей',
+                        surname: 'Лапшин',
+                    },
+                    {
+                        name: 'Никита',
+                        surname: 'Сарычев',
+                    }
+                ]
+            }
         }
     }
+
     render(){
-        return(
+        if(this.state.redirect) return <Redirect to="/" />
+        else return(
             <div className={classes.PersonalArea}>
                 <div className={classes.Contacts}>
                     {this.state.Contacts.map((item) => 
