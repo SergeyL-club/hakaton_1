@@ -3,9 +3,14 @@ import classes from './NewChat.module.css'
 import Icon from './Icon.png'
 
 class NewChat extends Component{
+
+    constructor(props) {
+        super(props);
+    }
+
     render(){
         return(
-            <div className={classes.Deks}>
+            <>
                 <div className={classes.Form}>
                     <img src={Icon} alt="icon" />
                     <h1>Создание чата</h1>
@@ -18,7 +23,8 @@ class NewChat extends Component{
                         </div>
                     </form>
                 </div>
-            </div>
+                <div onClick={this.props.setClose} className={classes.Deks} />
+            </>
         )
     }
 }
