@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { SocketContext } from './contexts/socket.context'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 
@@ -16,10 +15,6 @@ import ConfirmRecPas from './pages/ConfirmRecPas/ConfirmRecPas'
 
 
 export default class App extends Component {
-  static contextType = SocketContext
-  componentDidMount() {
-    
-  } 
 
   render() {
     return (
