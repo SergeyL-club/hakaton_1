@@ -17,20 +17,6 @@ class PersonalArea extends Component{
         } else {
             this.state = {
                 chats: [],
-                Contacts: [
-                    {
-                        name: 'Данил',
-                        surname: 'Ленченков'
-                    },
-                    {
-                        name: 'Сергей',
-                        surname: 'Лапшин',
-                    },
-                    {
-                        name: 'Никита',
-                        surname: 'Сарычев',
-                    }
-                ]
             }
         }
     }
@@ -56,16 +42,21 @@ class PersonalArea extends Component{
         if(this.state.redirect) return <Redirect to="/" />
         else return(
             <div className={classes.PersonalArea}>
-                <div className={classes.Contacts}>
-                    {this.state.chats.map((item, key) => 
-                        <Link key={key}
-                        to='/Auth'>
-                            <div className={classes.Contact}>
-                                <h1>{item.name}</h1>
-                            </div> 
-                        </Link>  
-                    )}
-               </div>
+                {this.state.chats.length > 0 ? (
+                   <div className={classes.Contacts}>
+                   {this.state.chats.map((item, key) => 
+                       <Link key={key}
+                       to='/Auth'>
+                           <div className={classes.Contact}>
+                               <h1>{item.name}</h1>
+                           </div> 
+                       </Link>  
+                   )}
+              </div>) : (
+                  <div className={classes.Contacts}>
+                      <h1>Чатов нету :(</h1>
+                    </div>
+              )}
                <div className={classes.Block_message}>
                     <h1>Выбирите человека</h1>
                </div>
