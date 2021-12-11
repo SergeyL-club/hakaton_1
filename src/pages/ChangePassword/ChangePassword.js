@@ -1,9 +1,24 @@
 import React, { Component } from "react";
 import classes from './ChangePassword.module.css'
 import Icon from './Icon.png'
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class ChangePassword extends Component{
+
+    constructor(props) {
+        super(props);
+        
+        let token = localStorage.getItem("token");
+        if(!token) {
+          this.state = {
+            redirect: true
+          }
+        } else {
+          this.state = {
+            redirect: false
+          }
+        }
+      }
 
     componentDidMount(){
         let inputs = document.querySelectorAll('input')
@@ -15,7 +30,8 @@ class ChangePassword extends Component{
     }
 
     render(){
-        return(
+        if(this.state.redirect) return <Redirect to="/" />
+        else return(
             <div className={classes.Deks}>
                 <div className={classes.Form}>
                     <img src={Icon} />
