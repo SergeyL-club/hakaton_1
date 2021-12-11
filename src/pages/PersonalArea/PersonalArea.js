@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import classes from './personalArea.module.css'
-import {NavLink, Link, Redirect} from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { verify } from "../../utils/auth";
 
 
@@ -38,8 +38,8 @@ class PersonalArea extends Component{
         else return(
             <div className={classes.PersonalArea}>
                 <div className={classes.Contacts}>
-                    {this.state.Contacts.map((item) => 
-                        <Link
+                    {this.state.Contacts.map((item, key) => 
+                        <Link key={key}
                         to='/Auth'>
                             <div className={classes.Contact}>
                                 <h1>{item.name}</h1>
