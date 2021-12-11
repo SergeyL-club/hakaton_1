@@ -12,7 +12,7 @@ class Main extends Component {
           <img src={Icon}/>
           <h1>Push to talk</h1>
           <p>Мгновенная связь между несколькими пользователями в режиме реальрного времени.</p>
-          <NavLink to="/Reg">
+          <NavLink to="/regist">
             Начать
           </NavLink>
         </div>

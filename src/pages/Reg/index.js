@@ -11,17 +11,6 @@ class Reg extends Component{
     constructor(props) {
         super(props);
         this.form = createRef();
-        let token = localStorage.getItem("token");
-        if(token) {
-            this.state = {
-                redirect: true
-            }
-        }
-        else {
-            this.state = {
-                redirect: false
-            }
-        }
     }
 
     componentDidMount(){
@@ -48,17 +37,13 @@ class Reg extends Component{
             }).then(res => {
                 if(res.status === 200) {
                     localStorage.setItem("token", res.data.data.token);
-                    this.setState({
-                        redirect: true
-                    });
                 }
             })
         }
     }
 
     render(){
-        if(this.state.redirect) return <Redirect to="/main" />
-        else return(
+        return(
             <div className={classes.Deks}>
                 <div className={classes.Form}>
                     <img src={Icon} />

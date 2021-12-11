@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from './personalArea.module.css'
 import {NavLink, Link} from 'react-router-dom'
-import { connect } from "react-redux";
+
 
 class PersonalArea extends Component{
     constructor(props){
@@ -46,11 +46,4 @@ class PersonalArea extends Component{
     }
 }
 
-function mapStateToProps(state) {
-    return {
-      token: state.auth.token,
-      nickname: state.auth.nickname
-    };
-  }
-
-export default connect(mapStateToProps)(PersonalArea)
+export default PersonalArea

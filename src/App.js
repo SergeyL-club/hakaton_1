@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { SocketContext } from './contexts/socket.context'
-import { BrowserRouter, Route, Switch, withRouter, Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { autoLogin } from './store/actions/Auth'
-import Layout from './hoc/Layout/Layout'
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 
 import Main from './pages/Main/index'
@@ -17,59 +13,29 @@ import RecoveryPassword from './pages/RecoveryPassword/RecoveryPassword'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 
 
-class App extends Component {
+export default class App extends Component {
   static contextType = SocketContext
-  
+  componentDidMount() {
+    
+  } 
 
   render() {
-    function routerUser(user, role) {
-      switch (user) {
-        case false:
-          return (
-            <Switch>
-              <Route path="/" exact component={Main} />
-              <Route path="/auth" exact component={Auth}/>
-              <Route path="/regist" exact component={Reg}/>
-              <Route path="*" component={NotFound404} />
-            </Switch>
-          );
-        case true:
-                return (
-                  <Switch>
-                    <Route path="/" exact component={Main} />
-                    <Route path="/auth" exact component={() => (user ? <Redirect to='/personalArea' /> : <Redirect to='/auth' />)}/>
-                    <Route path="/regist" exact component={() => (user ? <Redirect to='/item' /> : <Redirect to='/regist' />)}/>
-                    <Route path="/personalArea" exact component={PersonalArea}/>
-                    <Route path="/Room" exact component={Room} />
-                    <Route path="/RecPas" exact component={RecoveryPassword} />
-                    <Route path="/ChangePass" exact component={ChangePassword} />
-                    <Route path="*" component={NotFound404} />
-                  </Switch>
-                )
-              default:
-                break;
-            }
-    }
-
     return (
-      <Layout>
-        {routerUser(this.props.isAuth, String(this.props.role))}
-      </Layout>
-    );
+      <BrowserRouter>
+        <Switch>
+
+          <Route exact path="/room/:id" component={Room} />
+          <Route exact path="/" component={Main} />
+          <Route exact path='/personalArea' component={PersonalArea}/>
+          <Route exact path="/Auth"  component={Auth}/>
+          <Route exact path='/Reg' component={Reg}/>
+          <Route exact path='/RecPas' component={RecoveryPassword}/>
+          <Route exact path='/ChangePassword' component={ChangePassword}/>
+
+
+          <Route path="*" component={NotFound404} />
+        </Switch>
+      </BrowserRouter>
+    )
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    isAuth: state.auth.isAuth,
-    role: state.auth.role
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    autoLogin: () => dispatch(autoLogin()),
-  };
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
