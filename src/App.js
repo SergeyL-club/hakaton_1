@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { SocketContext } from './contexts/socket.context'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { autoLogin } from './store/actions/Auth'
+
 
 
 import Main from './pages/Main/index'
@@ -13,7 +16,7 @@ import RecoveryPassword from './pages/RecoveryPassword/RecoveryPassword'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 
 
-export default class App extends Component {
+class App extends Component {
   static contextType = SocketContext
   
 
@@ -37,3 +40,18 @@ export default class App extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    isAuth: state.auth.isAuth,
+    role: state.auth.role
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    autoLogin: () => dispatch(autoLogin()),
+  };
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
