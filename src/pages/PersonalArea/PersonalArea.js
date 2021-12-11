@@ -75,7 +75,7 @@ class PersonalArea extends Component{
                     <div className={classes.ContactsNot}>
                         <h1>Жаль, но чатов нет. <br/> НОООО - вы можете его создать :)</h1>
                         <div className={classes.NewChat}>
-                            <button onClick={() => this.setState({ isNewChatForm: !this.state.isNewChatForm })}>Click</button>
+                            <button onClick={() => this.setState({ isNewChatForm: !this.state.isNewChatForm })}>Добавить чат</button>
                         </div>  
                     </div>
                     

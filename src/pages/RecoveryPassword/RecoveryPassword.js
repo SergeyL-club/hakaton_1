@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from './RecoveryPassword.module.css'
 import Icon from './Icon.png'
 import { Redirect } from "react-router-dom";
+import axios from "../../axios/axios";
 
 class RecoveryPassword extends Component{
 
@@ -27,6 +28,9 @@ class RecoveryPassword extends Component{
                 input.style.border = '1px solid #717DF0'
             }
         }
+
+        let login = document.querySelector('#login')
+        axios.get(`/account/changePasswordRequest`, {})
     }
 
     render(){
@@ -38,7 +42,7 @@ class RecoveryPassword extends Component{
                     <h1>Восстановление пароля</h1>
                     <p>Ниже, введите свой адрес эл. почты или никнейм, на него Вам придёт ссылка на восстановление пароля</p>
                     <form>
-                        <input placeholder="Никнейм или Email" type='text' />
+                        <input placeholder="Никнейм или Email" type='text' id="login"/>
                         <div className={classes.Buttons}>
                             <button type="button">Отправить</button>
                         </div>
