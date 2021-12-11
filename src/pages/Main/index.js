@@ -1,12 +1,29 @@
 import React, { Component } from 'react'
 import classes from './main.module.css'
-import {Link, NavLink} from 'react-router-dom'
+import {Link, NavLink, Redirect} from 'react-router-dom'
 import Icon from './Icon.png'
 import { connect } from 'react-redux'
 
 class Main extends Component {
+
+  constructor(props) {
+    super(props);
+    
+    let token = localStorage.getItem("token");
+    if(token) {
+      this.state = {
+        redirect: true
+      }
+    } else {
+      this.state = {
+        redirect: false
+      }
+    }
+  }
+
   render() {
-    return (
+    if(this.state.redirect) return <Redirect to="/personalArea" />
+    else return (
       <div className={classes.Main}>
         <div className={classes.Main_content}>
           <img src={Icon}/>

@@ -5,12 +5,23 @@ import { Link } from "react-router-dom";
 import axios from '../../axios/axios';
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { reg } from "../../utils/auth";
 
 class Reg extends Component{
 
     constructor(props) {
         super(props);
         this.form = createRef();
+        let token = localStorage.getItem("token");
+        if(token) {
+            this.state = {
+                redirect: true
+            }
+        } else {
+            this.state = {
+                redirect: false
+            }
+        }
     }
 
     componentDidMount(){
@@ -27,23 +38,16 @@ class Reg extends Component{
         let email = this.form.current.mail.value.trim();
         let password = this.form.current.mail.value.trim();
 
-        if(nickname !== "" && email !== "" && password !== "") {
-            axios.get("/account/registration", {
-                params: {
-                    nickname,
-                    email,
-                    password 
-                }
-            }).then(res => {
-                if(res.status === 200) {
-                    localStorage.setItem("token", res.data.data.token);
-                }
-            })
-        }
+        reg(nickname, password, email, (isAuth) => {
+            this.setState({
+                redirect: isAuth
+            });
+        });
     }
 
     render(){
-        return(
+        if(this.state.redirect) return <Redirect to="/personalArea" />
+        else return(
             <div className={classes.Deks}>
                 <div className={classes.Form}>
                     <img src={Icon} />

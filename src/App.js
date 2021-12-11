@@ -28,7 +28,7 @@ export default class App extends Component {
           <Route exact path="/" component={Main} />
           <Route exact path='/personalArea' component={PersonalArea}/>
           <Route exact path="/Auth"  component={Auth}/>
-          <Route exact path='/Reg' component={Reg}/>
+          <Route exact path='/regist' component={Reg}/>
           <Route exact path='/RecPas' component={RecoveryPassword}/>
           <Route exact path='/ChangePassword' component={ChangePassword}/>
 
