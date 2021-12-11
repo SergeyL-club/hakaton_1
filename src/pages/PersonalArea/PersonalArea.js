@@ -16,6 +16,7 @@ class PersonalArea extends Component{
             }
         } else {
             this.state = {
+                chats: [],
                 Contacts: [
                     {
                         name: 'Данил',
@@ -42,7 +43,9 @@ class PersonalArea extends Component{
                     token
                 }
             }).then(res => {
-                console.log(res.data);
+                this.setState({
+                    chats: res.data.data.chats
+                })
             }).catch(e => {
                 console.log(e);
             })
@@ -54,13 +57,11 @@ class PersonalArea extends Component{
         else return(
             <div className={classes.PersonalArea}>
                 <div className={classes.Contacts}>
-                    {this.state.Contacts.map((item, key) => 
+                    {this.state.chats.map((item, key) => 
                         <Link key={key}
                         to='/Auth'>
                             <div className={classes.Contact}>
                                 <h1>{item.name}</h1>
-                                <h1>{item.surname}</h1>
-                                <h1>{this.props.nickname}</h1>
                             </div> 
                         </Link>  
                     )}
