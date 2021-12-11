@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from './ChangePassword.module.css'
 import Icon from './Icon.png'
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class ChangePassword extends Component{
 
@@ -34,7 +34,7 @@ class ChangePassword extends Component{
         else return(
             <div className={classes.Deks}>
                 <div className={classes.Form}>
-                    <img src={Icon} />
+                    <img src={Icon} alt="icon" />
                     <h1>Смена пороля</h1>
                     <form>
                         <input placeholder="Введите новый пароль" type='password' />

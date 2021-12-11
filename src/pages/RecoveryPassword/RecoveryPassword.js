@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from './RecoveryPassword.module.css'
 import Icon from './Icon.png'
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class RecoveryPassword extends Component{
 
@@ -34,7 +34,7 @@ class RecoveryPassword extends Component{
         else return(
             <div className={classes.Deks}>
                 <div className={classes.Form}>
-                    <img src={Icon} />
+                    <img src={Icon} alt="icon" />
                     <h1>Восстановление пароля</h1>
                     <p>Ниже, введите свой адрес эл. почты или никнейм, на него Вам придёт ссылка на восстановление пароля</p>
                     <form>
