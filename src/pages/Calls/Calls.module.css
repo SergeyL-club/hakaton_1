@@ -42,6 +42,7 @@
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid #eee;
+    min-width: 600px;
 }
 
 .Button_List{
