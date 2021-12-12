@@ -1,152 +1,136 @@
-// import React, { useRef, useEffect } from "react";
-// import io from "socket.io-client";
-// import AudioSpectrum from 'react-audio-spectrum'
+import React, { useRef, useEffect } from "react";
+import io from "socket.io-client";
 
-// const Room = (props) => {
-//     const userVideo = useRef();
-//     const partnerVideo = useRef();
-//     const peerRef = useRef();
-//     const socketRef = useRef();
-//     const otherUser = useRef();
-//     const userStream = useRef();
+const Room = (props) => {
 
-//     useEffect(() => {
-//         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(stream => {
-//             userVideo.current.srcObject = stream;
-//             userStream.current = stream;
+    const userVideo = useRef();
+    const partnerVideo = useRef();
+    const peerRef = useRef();
+    const socketRef = useRef();
+    const otherUser = useRef();
+    const userStream = useRef();
 
-//             let token = "$2b$04$eaNJXVb5sSLuR5uIT5BWgOx/kAX0EEY6TQZtBLbai8f15tBHx7lPO";
-//             socketRef.current = io.connect("https://hack.okeit.edu:8181", {
-//               transports: ["websocket"],
-//               query: `token=${token}`
-//             });
-//             socketRef.current.emit("join room", 10);
+    useEffect(() => {
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(stream => {
+            userVideo.current.srcObject = stream;
+            userStream.current = stream;
 
-//             socketRef.current.on('other user', userID => {
-//                 callUser(userID);
-//                 otherUser.current = userID;
-//             });
+            let token = "$2b$04$eaNJXVb5sSLuR5uIT5BWgOx/kAX0EEY6TQZtBLbai8f15tBHx7lPO";
+            socketRef.current = io.connect("https://hack.okeit.edu:8181", {
+              transports: ["websocket"],
+              query: `token=${token}`
+            });
+            socketRef.current.emit("join room", 10);
 
-//             socketRef.current.on("user joined", userID => {
-//                 otherUser.current = userID;
-//             });
+            socketRef.current.on('other user', userID => {
+                callUser(userID);
+                otherUser.current = userID;
+            });
 
-//             socketRef.current.on("offer", handleRecieveCall);
+            socketRef.current.on("user joined", userID => {
+                otherUser.current = userID;
+            });
 
-//             socketRef.current.on("answer", handleAnswer);
+            socketRef.current.on("offer", handleRecieveCall);
 
-//             socketRef.current.on("ice-candidate", handleNewICECandidateMsg);
-//         });
+            socketRef.current.on("answer", handleAnswer);
 
-//     }, []);
+            socketRef.current.on("ice-candidate", handleNewICECandidateMsg);
+        });
 
-//     function callUser(userID) {
-//         peerRef.current = createPeer(userID);
-//         userStream.current.getTracks().forEach(track => peerRef.current.addTrack(track, userStream.current));
-//     }
+    }, []);
 
-//     function createPeer(userID) {
-//         const peer = new RTCPeerConnection({
-//             iceServers: [
-//                 {
-//                     urls: "stun:stun.stunprotocol.org"
-//                 },
-//                 {
-//                     urls: 'turn:numb.viagenie.ca',
-//                     credential: 'muazkh',
-//                     username: 'webrtc@live.com'
-//                 },
-//             ]
-//         });
+    function callUser(userID) {
+        peerRef.current = createPeer(userID);
+        userStream.current.getTracks().forEach(track => peerRef.current.addTrack(track, userStream.current));
+    }
 
-//         peer.onicecandidate = handleICECandidateEvent;
-//         peer.ontrack = handleTrackEvent;
-//         peer.onnegotiationneeded = () => handleNegotiationNeededEvent(userID);
+    function createPeer(userID) {
+        const peer = new RTCPeerConnection({
+            iceServers: [
+                {
+                    urls: "stun:stun.stunprotocol.org"
+                },
+                {
+                    urls: 'turn:numb.viagenie.ca',
+                    credential: 'muazkh',
+                    username: 'webrtc@live.com'
+                },
+            ]
+        });
 
-//         return peer;
-//     }
+        peer.onicecandidate = handleICECandidateEvent;
+        peer.ontrack = handleTrackEvent;
+        peer.onnegotiationneeded = () => handleNegotiationNeededEvent(userID);
 
-//     function handleNegotiationNeededEvent(userID) {
-//         peerRef.current.createOffer().then(offer => {
-//             return peerRef.current.setLocalDescription(offer);
-//         }).then(() => {
-//             const payload = {
-//                 target: userID,
-//                 caller: socketRef.current.id,
-//                 sdp: peerRef.current.localDescription
-//             };
-//             socketRef.current.emit("offer", payload);
-//         }).catch(e => console.log(e));
-//     }
+        return peer;
+    }
 
-//     function handleRecieveCall(incoming) {
-//         peerRef.current = createPeer();
-//         const desc = new RTCSessionDescription(incoming.sdp);
-//         peerRef.current.setRemoteDescription(desc).then(() => {
-//             userStream.current.getTracks().forEach(track => peerRef.current.addTrack(track, userStream.current));
-//         }).then(() => {
-//             return peerRef.current.createAnswer();
-//         }).then(answer => {
-//             return peerRef.current.setLocalDescription(answer);
-//         }).then(() => {
-//             const payload = {
-//                 target: incoming.caller,
-//                 caller: socketRef.current.id,
-//                 sdp: peerRef.current.localDescription
-//             }
-//             socketRef.current.emit("answer", payload);
-//         })
-//     }
+    function handleNegotiationNeededEvent(userID) {
+        peerRef.current.createOffer().then(offer => {
+            return peerRef.current.setLocalDescription(offer);
+        }).then(() => {
+            const payload = {
+                target: userID,
+                caller: socketRef.current.id,
+                sdp: peerRef.current.localDescription
+            };
+            socketRef.current.emit("offer", payload);
+        }).catch(e => console.log(e));
+    }
 
-//     function handleAnswer(message) {
-//         const desc = new RTCSessionDescription(message.sdp);
-//         peerRef.current.setRemoteDescription(desc).catch(e => console.log(e));
-//     }
+    function handleRecieveCall(incoming) {
+        peerRef.current = createPeer();
+        const desc = new RTCSessionDescription(incoming.sdp);
+        peerRef.current.setRemoteDescription(desc).then(() => {
+            userStream.current.getTracks().forEach(track => peerRef.current.addTrack(track, userStream.current));
+        }).then(() => {
+            return peerRef.current.createAnswer();
+        }).then(answer => {
+            return peerRef.current.setLocalDescription(answer);
+        }).then(() => {
+            const payload = {
+                target: incoming.caller,
+                caller: socketRef.current.id,
+                sdp: peerRef.current.localDescription
+            }
+            socketRef.current.emit("answer", payload);
+        })
+    }
 
-//     function handleICECandidateEvent(e) {
-//         if (e.candidate) {
-//             const payload = {
-//                 target: otherUser.current,
-//                 candidate: e.candidate,
-//             }
-//             socketRef.current.emit("ice-candidate", payload);
-//         }
-//     }
+    function handleAnswer(message) {
+        const desc = new RTCSessionDescription(message.sdp);
+        peerRef.current.setRemoteDescription(desc).catch(e => console.log(e));
+    }
 
-//     function handleNewICECandidateMsg(incoming) {
-//         const candidate = new RTCIceCandidate(incoming);
+    function handleICECandidateEvent(e) {
+        if (e.candidate) {
+            const payload = {
+                target: otherUser.current,
+                candidate: e.candidate,
+            }
+            socketRef.current.emit("ice-candidate", payload);
+        }
+    }
 
-//         peerRef.current.addIceCandidate(candidate)
-//             .catch(e => console.log(e));
-//     }
+    function handleNewICECandidateMsg(incoming) {
+        const candidate = new RTCIceCandidate(incoming);
 
-//     function handleTrackEvent(e) {
-//         partnerVideo.current.srcObject = e.streams[0];
-//     };
+        peerRef.current.addIceCandidate(candidate)
+            .catch(e => console.log(e));
+    }
 
-//     return (
-//         <div>
-//             <audio autoPlay ref={userVideo} />
-//             <audio autoPlay ref={partnerVideo} />
-//             <AudioSpectrum
-//               id="audio-canvas"
-//               height={200}
-//               width={300}
-//               audioEle={userVideo}
-//               capColor={'red'}
-//               capHeight={2}
-//               meterWidth={2}
-//               meterCount={512}
-//               meterColor={[
-//                 {stop: 0, color: '#f00'},
-//                 {stop: 0.5, color: '#0CD7FD'},
-//                 {stop: 1, color: 'red'}
-//               ]}
-//               gap={4}
-//             />
-//         </div>
+    function handleTrackEvent(e) {
+        partnerVideo.current.srcObject = e.streams[0];
+    };
 
-//     );
-// };
+    return (
+        <div>
+            <video id="main" ref={userVideo} />
+            <video id="partner" ref={partnerVideo} />
+        </div>
 
-// export default Room;
+    );
+};
+
+export default Room;
