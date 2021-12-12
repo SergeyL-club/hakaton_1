@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import classes from './personalArea.module.css'
 import { Link, Redirect } from 'react-router-dom'
 import axios from "../../axios/axios";
-import NewChat from "../NewChat/NewChat";
 import menu from './menu.png';
+import Icon from './Icon.png'
 
 
 class PersonalArea extends Component{
@@ -59,9 +59,7 @@ class PersonalArea extends Component{
             })
         }
 
-        document.querySelector('#menu').addEventListener('click', () => {
-            this.setState({block: (this.state.block === 'block') ? "none" : "block"});
-        });
+        
     }
 
     setCloseFormNewChat() {
@@ -84,48 +82,40 @@ class PersonalArea extends Component{
         if(this.state.redirect) return <Redirect to="/"/>
         else return(
             <>
-                { this.state.isNewChatForm ? <NewChat setChats={this.setChats} setClose={this.setCloseFormNewChat} /> : null }
-                <div className={classes.PersonalArea}>
-                    {this.state.chats.length > 0 ? (
-                    <div className={classes.Contacts} id="contacts">
-                        <div className={classes.menuCont} style={{display: `${this.state.block}`}}>
-                            <button onClick={() => this.setState({ isNewChatForm: !this.state.isNewChatForm })}>Добавить чат</button>
-                            <button>Список друзей</button>
-                            <button>Настройка аккаунта</button>
-                            <button onClick={this.clearToken}>Выйти из аккаунта</button>
+                {/* { this.state.isNewChatForm ? <NewChat setChats={this.setChats} setClose={this.setCloseFormNewChat} /> : null } */}
+                <div className={classes.Deks}>
+                    <div className={classes.Card}>
+                        <div className={classes.Card_Info}>
+                            <div className={classes.Left_Block}>
+                                <img src={Icon}/>
+                            </div>
+                            <div className={classes.Right_Block}>
+                                <h1>{localStorage.getItem('nickname')}</h1>
+                                <h2>{localStorage.getItem('email')}</h2>
+                            </div>
                         </div>
-                        <div className={classes.Up_Block}>
-                            <img src={menu} alt="menu" id="menu"/>
-                            <input name="search" value='Поиск' />
+                        <div className={classes.Button_List}>
+                            <button style={{
+                                borderTopRightRadius: '8px',
+                                borderTopLeftRadius: '8px'
+                            }}> <Link 
+                            style={{
+                                borderTopRightRadius: '8px',
+                                borderTopLeftRadius: '8px'
+                            }}
+                            
+                            to={{
+                                pathname: '/Contact'
+                            }}> 
+                            
+                            Контакты </Link> </button>
+                            <button> Настройки </button>
+                            <button style={{
+                                borderBottomRightRadius: '8px',
+                                borderBottomLeftRadius: '8px'
+                            }}> Выйти </button>
                         </div>
-                    {this.state.chats.map((item, key) => 
-                        <Link key={key}
-                        to={'/room/'+item.id}>
-                            <div className={classes.Contact}>
-                                <h1>{item.name}</h1>
-                            </div> 
-                        </Link>  
-                    )}
-                </div>) : (
-                    <div className={classes.Contacts} id="contacts">
-                        <div className={classes.menuCont} style={{display: `${this.state.block}`}}>
-                            <button onClick={() => this.setState({ isNewChatForm: !this.state.isNewChatForm })}>Добавить чат</button>
-                            <button>Список друзей</button>
-                            <button>Настройка аккаунта</button>
-                            <button onClick={this.clearToken}>Выйти из аккаунта</button>
-                        </div>
-                        <div className={classes.Up_Block}>
-                            <img src={menu} alt="menu" id="menu"/>
-                            <input name="search" placeholder="Поиск"/>
-                        </div>
-                        <h1 style={{marginTop: '25px'}}>Жаль, но чатов нет. <br/> НОООО - вы можете его создать :)</h1>
                     </div>
-                    
-                        
-                )}
-                <div className={classes.Block_message}>
-                        <h1>Выбирите человека</h1>
-                </div>
                 </div>
             </>
         )
