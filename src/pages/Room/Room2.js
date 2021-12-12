@@ -15,12 +15,12 @@ const Room = (props) => {
             userVideo.current.srcObject = stream;
             userStream.current = stream;
 
-            let token = "$2b$04$eaNJXVb5sSLuR5uIT5BWgOx/kAX0EEY6TQZtBLbai8f15tBHx7lPO";
+            let token = localStorage.getItem('token');
             socketRef.current = io.connect("https://hack.okeit.edu:8181", {
               transports: ["websocket"],
               query: `token=${token}`
             });
-            socketRef.current.emit("join room", 10);
+            socketRef.current.emit("join room", window.location.pathname);
 
             socketRef.current.on('other user', userID => {
                 callUser(userID);
@@ -126,7 +126,7 @@ const Room = (props) => {
 
     return (
         <div>
-            <video id="main" ref={userVideo} />
+            {/* <video id="main" ref={userVideo} /> */}
             <video id="partner" ref={partnerVideo} />
         </div>
 

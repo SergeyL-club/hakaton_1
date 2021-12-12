@@ -35,7 +35,7 @@ export default class App extends Component {
           <Route exact path='/Contact' component={Contact}/>
           <Route exact path='/ConfirmRecPas' component={ConfirmRecPas}/>
           <Route exact path='/NewContact' component={NewContact}/>
-          <Route exact path='/Calls' component={Calls}/>
+          <Route exact path='/Calls/:id' component={Calls}/>
 
 
           <Route path="*" component={NotFound404} />

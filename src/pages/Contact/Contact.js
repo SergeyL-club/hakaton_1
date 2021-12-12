@@ -55,17 +55,22 @@ class NewChat extends Component{
                         </div>
                         <div className={classes.Button_List}>
                             {this.state.contacts.map((item, key) => 
+                                <Link to={{
+                                    pathname: `/Calls/${item.account.id}`
+                                }}>
                                     <div className={classes.CardPeop} key={key}>
-                                    <img src={Icon} style={{
-                                        maxHeight: '75px'
-                                    }}/>
-                                    <div key={key} className={classes.InfoPeop}>
-                                        <h1>{item.account.nickname}</h1>
-                                        <h2>{item.account.phone}</h2>
-                                        
-                                    </div>
-                                    <img src={micro}/>
-                                    </div>
+                                        <img src={Icon} style={{
+                                            maxHeight: '75px'
+                                        }}/>
+                                        <div key={key} className={classes.InfoPeop}>
+                                            <h1>{item.account.nickname}</h1>
+                                            <h2>{item.account.phone}</h2>
+                                            
+                                        </div>
+                                        <img src={micro}/>
+                                        </div>
+                                </Link>
+                                    
                                 
                             )}
                         </div>

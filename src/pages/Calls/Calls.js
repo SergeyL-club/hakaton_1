@@ -4,13 +4,15 @@ import Web from './web.png'
 import Vector from './Vector.png'
 import micro from './micro.png'
 import Icon from './Icon.png'
+import Room2 from "../Room/Room2";
 
 class Calls extends Component{
     render(){
         return(
             <div className={classes.Deks}>
                 <div className={classes.WebCam}>
-                    <img src={Web}/>
+                    {/* <img src={Web}/> */}
+                    <Room2 />
                     <div className={classes.Block}>
                         <div className={classes.UpBlock}>
                             <img src={Vector}/>
