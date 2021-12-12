@@ -17,7 +17,7 @@ export default class Room2 extends Component {
     navigator.mediaDevices.getUserMedia({vide: true, audio: true}).then(stream => {
       this.stream.current = stream;
       this.audio.current.srcObject = this.stream.current;
-      let token = "$2b$04$ewh8AgavA/DCsKY0JsyBn.UHMBs22d9wg7FV3Y/dJBjsYS/lcJSFe";
+      let token = "$2b$04$eaNJXVb5sSLuR5uIT5BWgOx/kAX0EEY6TQZtBLbai8f15tBHx7lPO";
       this.socket.current =  io.connect("https://192.168.107.126:8181", {
         transports: ["websocket"],
         query: `token=${token}`
