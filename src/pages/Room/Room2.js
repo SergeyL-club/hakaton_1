@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import io from "socket.io-client";
+import AudioSpectrum from 'react-audio-spectrum'
 
 const Room = (props) => {
     const userVideo = useRef();
