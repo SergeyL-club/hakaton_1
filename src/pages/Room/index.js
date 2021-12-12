@@ -16,8 +16,11 @@ export default class Room extends Component {
     navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
       this.stream.current = stream;
       
+      let token = localStorage.getItem("token");
+
       this.socket.current = io("http://hack.okeit.edu:8181",  {
-        transports: ["websocket"]
+        transports: ["websocket"],
+        query: `token=${token}`
       });
       this.socket.current.emit("join room", window.location.pathname);
       this.socket.current.on("other user", userID => {
