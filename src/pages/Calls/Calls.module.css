@@ -1,0 +1,91 @@
+.Deks{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.WebCam{
+    width: max-content;
+    height: max-content;
+
+    display: flex;
+    flex-direction: column;
+    grid-gap: 32px;
+}
+
+.WebCam img{
+    border-radius: 16px;
+}
+
+.UpBlock{
+    display: flex;
+    width: 100%;
+    height: max-content;
+    padding: 20px;
+    background: #EEEEEE;
+    border-radius: 16px 16px 0px 0px;
+}
+
+.UpBlock h1{
+    width: 100%;
+    text-align: center;
+}
+
+.UpBlock img{
+    object-fit: contain;
+}
+
+.Block{
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+.Button_List{
+    width: 100%;
+    border-radius: 16px;
+}
+
+.Group{
+    display: flex;
+    grid-gap: 16px;
+    align-items: center;
+
+    width: 100%;
+}
+
+.CardPeop{
+    
+    padding: 15px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: max-content;
+    border-bottom: 0.5px solid #EEEEEE;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+}
+
+.CardPeop img{
+    object-fit: contain;
+}
+
+.CardPeop #icon{
+    height: 75px !important;
+}
+
+.InfoPeop h1{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.InfoPeop h2{
+    font-size: 19px;
+    font-weight: 300;
+}
+
+.CardPeop:hover{
+    background-color: #EEEEEE;
+}

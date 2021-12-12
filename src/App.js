@@ -13,6 +13,7 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import Contact from './pages/Contact/Contact'
 import ConfirmRecPas from './pages/ConfirmRecPas/ConfirmRecPas'
 import NewContact from './pages/NewContact/NewContact'
+import Calls from './pages/Calls/Calls'
 
 
 export default class App extends Component {
@@ -23,7 +24,7 @@ export default class App extends Component {
       <BrowserRouter>
         <Switch>
 
-          <Route exact path="/room/:id" component={Room} />
+          {/* <Route exact path="/room/:id" component={Room} /> */}
           <Route exact path="/" component={Main} />
           <Route exact path='/personalArea' component={PersonalArea}/>
           <Route exact path="/Auth"  component={Auth}/>
@@ -33,6 +34,7 @@ export default class App extends Component {
           <Route exact path='/Contact' component={Contact}/>
           <Route exact path='/ConfirmRecPas' component={ConfirmRecPas}/>
           <Route exact path='/NewContact' component={NewContact}/>
+          <Route exact path='/Calls' component={Calls}/>
 
 
           <Route path="*" component={NotFound404} />
