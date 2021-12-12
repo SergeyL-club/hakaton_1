@@ -26,7 +26,7 @@ export default class App extends Component {
       <BrowserRouter>
         <Switch>
 
-          <Route exact path="/Calls" component={Room2} />
+          <Route exact path="/Calls/:id" component={Room2} />
           {/* <Route exact path="/room/:id" component={Room} /> */}
           <Route exact path="/" component={Main} />
           <Route exact path='/personalArea' component={PersonalArea}/>
