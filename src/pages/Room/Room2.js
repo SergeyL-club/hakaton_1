@@ -135,7 +135,7 @@ const Room = (props) => {
                 <div className={classes.WebCam}>
                 <div>
                     <video id="main" ref={userVideo} /> 
-                    <video id="partner" ref={partnerVideo} />
+                    <video autoPlay id="partner" ref={partnerVideo} />
                 </div>
                     <div className={classes.Block}>
                         <div className={classes.UpBlock}>
