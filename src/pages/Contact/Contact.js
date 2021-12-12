@@ -64,7 +64,7 @@ class NewChat extends Component{
                                         }}/>
                                         <div key={key} className={classes.InfoPeop}>
                                             <h1>{item.account.nickname}</h1>
-                                            <h2>{item.account.phone}</h2>
+                                            <h2>{item.name}</h2>
                                             
                                         </div>
                                         <img src={micro}/>

@@ -134,7 +134,7 @@ const Room = (props) => {
         <div className={classes.Deks}>
                 <div className={classes.WebCam}>
                 <div>
-                    <video id="main" ref={userVideo} style={{display: 'none'}}/> 
+                    <video id="main" ref={userVideo} style={{opacity: 0}}/> 
                     <video autoPlay id="partner" ref={partnerVideo} />
                 </div>
                     <div className={classes.Block}>
