@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import io from "socket.io-client";
-import AudioSpectrum from 'react-audio-spectrum'
 
 const Room = (props) => {
+
     const userVideo = useRef();
     const partnerVideo = useRef();
     const peerRef = useRef();
@@ -126,24 +126,8 @@ const Room = (props) => {
 
     return (
         <div>
-            <audio autoPlay ref={userVideo} />
-            <audio autoPlay ref={partnerVideo} />
-            <AudioSpectrum
-              id="audio-canvas"
-              height={200}
-              width={300}
-              audioEle={userVideo}
-              capColor={'red'}
-              capHeight={2}
-              meterWidth={2}
-              meterCount={512}
-              meterColor={[
-                {stop: 0, color: '#f00'},
-                {stop: 0.5, color: '#0CD7FD'},
-                {stop: 1, color: 'red'}
-              ]}
-              gap={4}
-            />
+            <audio id="main" ref={userVideo} />
+            <audio id="partner" ref={partnerVideo} />
         </div>
 
     );
