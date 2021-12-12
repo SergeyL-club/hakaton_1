@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classes from './main.module.css'
-import { NavLink, Redirect} from 'react-router-dom'
+import { NavLink, Redirect, Link} from 'react-router-dom'
 import Icon from './Icon.png'
 
 class Main extends Component {
@@ -25,10 +25,14 @@ class Main extends Component {
     else return (
       <div className={classes.Main}>
         <div className={classes.Main_content}>
-          <img src={Icon} alt='icon'/>
+                        <Link to={{
+                            pathname: '/personalArea'
+                        }}>
+                            <img src={Icon} alt="icon" />
+                        </Link>
           <h1>Push to talk</h1>
-          <p>Мгновенная связь между несколькими пользователями в режиме реальрного времени.</p>
-          <NavLink to="/regist">
+          <p>Мгновенная связь между несколькими пользователями в режиме реального времени.</p>
+          <NavLink to="/regist" className={classes.Link}>
             Начать
           </NavLink>
         </div>

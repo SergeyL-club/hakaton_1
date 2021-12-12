@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from './ConfirmRecPas.module.css'
 import Icon from './Icon.png'
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from "../../axios/axios";
 
 class ConfirmRecPas extends Component{
@@ -59,7 +59,11 @@ class ConfirmRecPas extends Component{
         else return(
             <div className={classes.Deks}>
                 <div className={classes.Form}>
-                    <img src={Icon} alt="icon" />
+                    <Link to={{
+                        pathname: '/mpersonalArea'
+                    }}>
+                        <img src={Icon} alt="icon" />
+                    </Link>
                     <h1>Восстановление пароля</h1>
                     <p>Ниже, введите свой адрес эл. почты или никнейм, на него Вам придёт ссылка на восстановление пароля</p>
                     <form>

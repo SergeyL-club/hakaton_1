@@ -3,6 +3,7 @@ import classes from './personalArea.module.css'
 import { Link, Redirect } from 'react-router-dom'
 import axios from "../../axios/axios";
 import NewChat from "../NewChat/NewChat";
+import menu from './menu.png'
 
 
 class PersonalArea extends Component{
@@ -19,7 +20,8 @@ class PersonalArea extends Component{
                 redirect: false,
                 chats: [],
                 con: [],
-                isNewChatForm: false
+                isNewChatForm: false,
+                block: 'none'
             }
             this.setCloseFormNewChat = this.setCloseFormNewChat.bind(this);
         }
@@ -50,6 +52,10 @@ class PersonalArea extends Component{
                 console.log(e);
             })
         }
+
+        document.querySelector('#menu').addEventListener('click', () => {
+            this.setState({block: (this.state.block === 'block') ? "none" : "block"});
+        });
     }
 
     setCloseFormNewChat() {
@@ -59,20 +65,22 @@ class PersonalArea extends Component{
     }
 
     render(){
-        if(this.state.redirect) return <Redirect to="/" />
-        else return(
+         return(
             <>
                 { this.state.isNewChatForm ? <NewChat setClose={this.setCloseFormNewChat} /> : null }
                 <div className={classes.PersonalArea}>
                     {this.state.chats.length > 0 ? (
-                    <div className={classes.Contacts}>
-                        <div className={classes.NewChat}>
-                                    <Link to={{
-                                        pathname: '/NewChat'
-                                    }}>
-                                        +
-                                    </Link>
-                            </div>
+                    <div className={classes.Contacts} id="contacts">
+                        <div className={classes.menuCont} style={{display: `${this.state.block}`}}>
+                            <button onClick={() => this.setState({ isNewChatForm: !this.state.isNewChatForm })}>Добавить чат</button>
+                            <button>Список друзей</button>
+                            <button>Настройка аккаунта</button>
+                            <button>Выйти из аккаунта</button>
+                        </div>
+                        <div className={classes.Up_Block}>
+                            <img src={menu} id="menu"/>
+                            <input value='Поиск' />
+                        </div>
                     {this.state.chats.map((item, key) => 
                         <Link key={key}
                         to='/Auth'>
@@ -82,11 +90,18 @@ class PersonalArea extends Component{
                         </Link>  
                     )}
                 </div>) : (
-                    <div className={classes.ContactsNot}>
-                        <h1>Жаль, но чатов нет. <br/> НОООО - вы можете его создать :)</h1>
-                        <div className={classes.NewChat}>
+                    <div className={classes.Contacts} id="contacts">
+                        <div className={classes.menuCont} style={{display: `${this.state.block}`}}>
                             <button onClick={() => this.setState({ isNewChatForm: !this.state.isNewChatForm })}>Добавить чат</button>
-                        </div>  
+                            <button>Список друзей</button>
+                            <button>Настройка аккаунта</button>
+                            <button>Выйти из аккаунта</button>
+                        </div>
+                        <div className={classes.Up_Block}>
+                            <img src={menu} id="menu"/>
+                            <input placeholder="Поиск"/>
+                        </div>
+                        <h1 style={{marginTop: '25px'}}>Жаль, но чатов нет. <br/> НОООО - вы можете его создать :)</h1>
                     </div>
                     
                         

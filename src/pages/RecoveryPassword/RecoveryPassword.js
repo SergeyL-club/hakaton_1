@@ -57,7 +57,11 @@ class RecoveryPassword extends Component{
         else return(
             <div className={classes.Deks}>
                 <div className={classes.Form}>
-                    <img src={Icon} alt="icon" />
+                        <Link to={{
+                            pathname: '/personalArea'
+                        }}>
+                            <img src={Icon} alt="icon" />
+                        </Link>
                     <h1>Восстановление пароля</h1>
                     <p>Ниже, введите свой адрес эл. почты или никнейм, на него Вам придёт ссылка на восстановление пароля</p>
                     <form>
