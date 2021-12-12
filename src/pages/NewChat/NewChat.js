@@ -60,6 +60,15 @@ class NewChat extends Component{
             }
         }).then(res => {
             console.log(res.status, res.data);
+            axios.get("/chat/getList", {
+                headers: {
+                    token
+                }
+            }).then(res => {
+                this.props.setChats(res.data.data.chats);
+            }).catch(e => {
+                console.log(e);
+            })
         })
     }
 

@@ -3,9 +3,12 @@ import classes from './personalArea.module.css'
 import { Link, Redirect } from 'react-router-dom'
 import axios from "../../axios/axios";
 import NewChat from "../NewChat/NewChat";
+import { SocketContext } from '../../contexts/socket.context'
 
 
 class PersonalArea extends Component{
+    static contextType = SocketContext
+    
     constructor(props){
         super(props);
         
@@ -22,6 +25,7 @@ class PersonalArea extends Component{
                 isNewChatForm: false
             }
             this.setCloseFormNewChat = this.setCloseFormNewChat.bind(this);
+            this.setChats = this.setChats.bind(this);
         }
     }
 
@@ -58,20 +62,22 @@ class PersonalArea extends Component{
         })
     }
 
+    setChats(chats) {
+        this.setState({
+            chats: chats
+        });
+    }
+
     render(){
         if(this.state.redirect) return <Redirect to="/" />
         else return(
             <>
-                { this.state.isNewChatForm ? <NewChat setClose={this.setCloseFormNewChat} /> : null }
+                { this.state.isNewChatForm ? <NewChat setChats={this.setChats} setClose={this.setCloseFormNewChat} /> : null }
                 <div className={classes.PersonalArea}>
                     {this.state.chats.length > 0 ? (
                     <div className={classes.Contacts}>
                         <div className={classes.NewChat}>
-                                    <Link to={{
-                                        pathname: '/NewChat'
-                                    }}>
-                                        +
-                                    </Link>
+                            <button onClick={() => this.setState({ isNewChatForm: !this.state.isNewChatForm })}>Добавить чат</button>
                             </div>
                     {this.state.chats.map((item, key) => 
                         <Link key={key}
