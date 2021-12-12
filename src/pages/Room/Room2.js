@@ -16,7 +16,7 @@ const Room = (props) => {
             userStream.current = stream;
 
             let token = "$2b$04$eaNJXVb5sSLuR5uIT5BWgOx/kAX0EEY6TQZtBLbai8f15tBHx7lPO";
-            socketRef.current = io.connect("https://hack.okeit.edu:8181", {
+            socketRef.current = io.connect(process.env.websocket_url, {
               transports: ["websocket"],
               query: `token=${token}`
             });

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL = 'https://hack.okeit.edu:8080/'
+const URL = process.env.axios_url
 
 export default axios.create({
   url: URL,
