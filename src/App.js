@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import Room2 from './pages/Room/Room2'
+
 import Main from './pages/Main/index'
 // import Room from './pages/Room/index'
 import NotFound404 from './pages/NotFound404/index'
@@ -14,6 +14,8 @@ import Contact from './pages/Contact/Contact'
 import ConfirmRecPas from './pages/ConfirmRecPas/ConfirmRecPas'
 import NewContact from './pages/NewContact/NewContact'
 import Calls from './pages/Calls/Calls'
+import Room2 from './pages/Room/Room2'
+
 
 
 export default class App extends Component {
@@ -24,7 +26,7 @@ export default class App extends Component {
       <BrowserRouter>
         <Switch>
 
-          <Route exact path="/room2" component={Room2} />
+          <Route exact path="/Calls" component={Room2} />
           {/* <Route exact path="/room/:id" component={Room} /> */}
           <Route exact path="/" component={Main} />
           <Route exact path='/personalArea' component={PersonalArea}/>
@@ -35,7 +37,6 @@ export default class App extends Component {
           <Route exact path='/Contact' component={Contact}/>
           <Route exact path='/ConfirmRecPas' component={ConfirmRecPas}/>
           <Route exact path='/NewContact' component={NewContact}/>
-          <Route exact path='/Calls/:id' component={Calls}/>
 
 
           <Route path="*" component={NotFound404} />
