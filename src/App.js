@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-
+import Room2 from './pages/Room/Room2'
 import Main from './pages/Main/index'
-import Room from './pages/Room/index'
+// import Room from './pages/Room/index'
 import NotFound404 from './pages/NotFound404/index'
 import PersonalArea from './pages/PersonalArea/PersonalArea'
 import Auth from './pages/Auth/index'
@@ -20,8 +20,8 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-
-          <Route exact path="/room/:id" component={Room} />
+          <Route exact path="/room2" component={Room2} />
+          {/* <Route exact path="/room/:id" component={Room} /> */}
           <Route exact path="/" component={Main} />
           <Route exact path='/personalArea' component={PersonalArea}/>
           <Route exact path="/Auth"  component={Auth}/>
