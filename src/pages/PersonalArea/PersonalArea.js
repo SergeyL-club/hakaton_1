@@ -38,7 +38,7 @@ class PersonalArea extends Component{
         let token = localStorage.getItem("token");
         if(token) {
             verify(token, () => {
-                
+
             })
             axios.get("/account/verifyToken", {
                 headers: {
@@ -79,7 +79,10 @@ class PersonalArea extends Component{
     }
 
     clearToken(){
-        localStorage.clear('token')
+        localStorage.clear()
+        this.setState({
+            redirect: true
+        });
     }
 
     render(){
