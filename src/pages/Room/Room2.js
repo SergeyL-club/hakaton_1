@@ -5,6 +5,7 @@ import Vector from './Vector.png'
 import Plus from './Plus.png'
 import Icon from './Icon.png'
 import micro from './micro.png'
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Room = (props) => {
 
@@ -141,7 +142,12 @@ const Room = (props) => {
                 </div>
                     <div className={classes.Block}>
                         <div className={classes.UpBlock}>
-                            <img src={Vector}/>
+                            <Link to={{
+                                pathname: '/Contact'
+                            }}>
+                                <img src={Vector}/>
+                            </Link>
+                            
                             <h1>Текущий звонок</h1>
                         </div>
                         <div className={classes.Button_List}>

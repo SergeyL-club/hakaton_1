@@ -9,7 +9,7 @@
 .WebCam{
     width: max-content;
     height: max-content;
-
+    min-width: 600px;
     display: flex;
     flex-direction: column;
     grid-gap: 32px;
