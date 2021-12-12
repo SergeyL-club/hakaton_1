@@ -7,15 +7,17 @@ export default class Room extends Component {
     super(props);
     this.stream = React.createRef();
     this.socket = React.createRef();
+    this.partnerVideo = React.createRef();
     this.peerRef = React.createRef();
     this.otherUser = React.createRef();
+    this.userVideo = React.createRef();
   }
 
 
   componentDidMount(){
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(stream => {
       this.stream.current = stream;
-      
+      this.userVideo.current.srcObject = stream;
       let token = localStorage.getItem("token");
 
       this.socket.current = io("http://hack.okeit.edu:8181",  {
@@ -118,13 +120,17 @@ export default class Room extends Component {
         .catch(e => console.log(e));
   }
 
+  handleTrackEvent(e) {
+    partnerVideo.current.srcObject = e.streams[0];
+  }
 
   render() {
 
     
     return (
         <div>
-          <audio autoPlay ref={this.stream}/>
+          <video autoPlay ref={this.userVideo}/>
+          <video autoPlay ref={this.partnerVideo}/>
         </div>
     )
   }
