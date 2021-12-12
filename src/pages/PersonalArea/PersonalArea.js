@@ -76,6 +76,10 @@ class PersonalArea extends Component{
         });
     }
 
+    clearToken(){
+        localStorage.clear('token')
+    }
+
     render(){
         if(this.state.redirect) return <Redirect to="/"/>
         else return(
@@ -88,7 +92,7 @@ class PersonalArea extends Component{
                             <button onClick={() => this.setState({ isNewChatForm: !this.state.isNewChatForm })}>Добавить чат</button>
                             <button>Список друзей</button>
                             <button>Настройка аккаунта</button>
-                            <button>Выйти из аккаунта</button>
+                            <button onClick={this.clearToken}>Выйти из аккаунта</button>
                         </div>
                         <div className={classes.Up_Block}>
                             <img src={menu} alt="menu" id="menu"/>
@@ -108,7 +112,7 @@ class PersonalArea extends Component{
                             <button onClick={() => this.setState({ isNewChatForm: !this.state.isNewChatForm })}>Добавить чат</button>
                             <button>Список друзей</button>
                             <button>Настройка аккаунта</button>
-                            <button>Выйти из аккаунта</button>
+                            <button onClick={this.clearToken}>Выйти из аккаунта</button>
                         </div>
                         <div className={classes.Up_Block}>
                             <img src={menu} alt="menu" id="menu"/>
