@@ -140,7 +140,9 @@ const Room = (props) => {
                         maxWidth: 600
                     }}/>
                 </div>
-                    <div className={classes.Block}>
+                    <div className={classes.Block} style={{
+                        minWidth: 600
+                    }}>
                         <div className={classes.UpBlock}>
                             <Link to={{
                                 pathname: '/Contact'
