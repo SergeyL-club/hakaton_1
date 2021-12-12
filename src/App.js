@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-
+import Room2 from './pages/Room/Room2'
 import Main from './pages/Main/index'
-import Room from './pages/Room/index'
+// import Room from './pages/Room/index'
 import NotFound404 from './pages/NotFound404/index'
 import PersonalArea from './pages/PersonalArea/PersonalArea'
 import Auth from './pages/Auth/index'
@@ -19,6 +19,7 @@ export default class App extends Component {
 
   render() {
     return (
+
       <BrowserRouter>
         <Switch>
 
@@ -37,6 +38,7 @@ export default class App extends Component {
           <Route path="*" component={NotFound404} />
         </Switch>
       </BrowserRouter>
+
     )
   }
 }
