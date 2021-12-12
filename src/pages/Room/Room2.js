@@ -132,7 +132,7 @@ const Room = (props) => {
               id="audio-canvas"
               height={200}
               width={300}
-              audioId={userVideo}
+              audioEle={userVideo}
               capColor={'red'}
               capHeight={2}
               meterWidth={2}
