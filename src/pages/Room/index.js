@@ -15,7 +15,7 @@ export default class Room extends Component {
 
 
   componentDidMount(){
-    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(stream => {
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
       this.stream.current = stream;
       this.userVideo.current.srcObject = stream;
       let token = localStorage.getItem("token");
