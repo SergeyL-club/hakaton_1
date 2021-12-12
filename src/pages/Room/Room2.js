@@ -1,5 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import io from "socket.io-client";
+import classes from './Calls.module.css'
+import Vector from './Vector.png'
+import Plus from './Plus.png'
+import Icon from './Icon.png'
+import micro from './micro.png'
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Room = (props) => {
 
@@ -12,15 +18,16 @@ const Room = (props) => {
 
     useEffect(() => {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(stream => {
+            console.log(stream);
             userVideo.current.srcObject = stream;
             userStream.current = stream;
 
-            let token = "$2b$04$eaNJXVb5sSLuR5uIT5BWgOx/kAX0EEY6TQZtBLbai8f15tBHx7lPO";
-            socketRef.current = io.connect(process.env.websocket_url, {
+            let token = localStorage.getItem('token');
+            socketRef.current = io.connect("https://hack.okeit.edu:8181", {
               transports: ["websocket"],
               query: `token=${token}`
             });
-            socketRef.current.emit("join room", 10);
+            socketRef.current.emit("join room", window.location.pathname);
 
             socketRef.current.on('other user', userID => {
                 callUser(userID);
@@ -125,10 +132,47 @@ const Room = (props) => {
     };
 
     return (
-        <div>
-            <video id="main" ref={userVideo} />
-            <video id="partner" ref={partnerVideo} />
-        </div>
+        <div className={classes.Deks}>
+                <div className={classes.WebCam}>
+                <div>
+                    <video id="main" ref={userVideo} style={{opacity: 0, position: 'absolute', zIndex: -3}}/> 
+                    <video autoPlay id="partner" ref={partnerVideo} style={{
+                        maxWidth: 600
+                    }}/>
+                </div>
+                    <div className={classes.Block} style={{
+                        minWidth: 600
+                    }}>
+                        <div className={classes.UpBlock}>
+                            <Link to={{
+                                pathname: '/Contact'
+                            }}>
+                                <img src={Vector}/>
+                            </Link>
+                            
+                            <h1>Текущий звонок</h1>
+                        </div>
+                        <div className={classes.Button_List}>
+                                
+                                <div className={classes.CardPeop}>
+                                <div className={classes.Group}>
+                                <img src={Icon} style={{
+                                    maxHeight: '75px'
+                                }}/>
+                                <div className={classes.InfoPeop}>
+                                    <h1>Сергей</h1>
+                                    <h2>Дада</h2>
+                                    
+                                </div>
+                                
+                                </div>
+                                <img src={micro}/>
+                                </div>
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
 
     );
 };

@@ -9,15 +9,14 @@
 .WebCam{
     width: max-content;
     height: max-content;
-    min-width: 600px;
+
     display: flex;
     flex-direction: column;
     grid-gap: 32px;
 }
 
-.WebCam video{
+.WebCam img{
     border-radius: 16px;
-    max-width: 600px;
 }
 
 .UpBlock{
@@ -42,7 +41,6 @@
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid #eee;
-    min-width: 600px;
 }
 
 .Button_List{

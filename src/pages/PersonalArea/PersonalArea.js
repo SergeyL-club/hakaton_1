@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from "../../axios/axios";
 import menu from './menu.png';
 import Icon from './Icon.png'
+import { verify } from "../../utils/auth";
 
 
 class PersonalArea extends Component{
@@ -36,6 +37,9 @@ class PersonalArea extends Component{
     componentDidMount() {
         let token = localStorage.getItem("token");
         if(token) {
+            verify(token, () => {
+
+            })
             axios.get("/account/verifyToken", {
                 headers: {
                     token
@@ -75,7 +79,10 @@ class PersonalArea extends Component{
     }
 
     clearToken(){
-        localStorage.clear('token')
+        localStorage.clear()
+        this.setState({
+            redirect: true
+        });
     }
 
     render(){
@@ -91,6 +98,7 @@ class PersonalArea extends Component{
                             </div>
                             <div className={classes.Right_Block}>
                                 <h1>{localStorage.getItem('nickname')}</h1>
+                                <h2>{localStorage.getItem('phone')}</h2>
                                 <h2>{localStorage.getItem('email')}</h2>
                             </div>
                         </div>

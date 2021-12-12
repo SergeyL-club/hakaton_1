@@ -37,6 +37,7 @@ export const verify = async (token, callback) => {
       let data = resVerify.data.data;
       localStorage.setItem("nickname", data.nickname);
       localStorage.setItem("email", data.email);
+      localStorage.setItem("phone", data.phone);
       callback(true);
       return;
     }
