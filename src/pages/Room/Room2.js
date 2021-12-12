@@ -1,7 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, createContext } from 'react'
 import { io } from 'socket.io-client'
 
+let token = "$2b$04$ewh8AgavA/DCsKY0JsyBn.UHMBs22d9wg7FV3Y/dJBjsYS/lcJSFe";
+const socket =  io("https://192.168.107.126:8181", {
+  transports: ["websocket"],
+  query: `token=${token}`
+});
+
+const SocketContext = createContext({ socket })
+
 export default class Room2 extends Component {
+  static contextType = SocketContext;
 
   constructor(props){
     super(props);
@@ -15,13 +24,8 @@ export default class Room2 extends Component {
     navigator.mediaDevices.getUserMedia({vide: true, audio: true}).then(stream => {
       this.stream.current = stream;
       this.audio.current.srcObject = this.stream.current;
-      
-      let token = "$2b$04$ewh8AgavA/DCsKY0JsyBn.UHMBs22d9wg7FV3Y/dJBjsYS/lcJSFe";
-      this.socket.current = io("https://192.168.107.126:8181", {
-        transports: ["websocket"],
-        query: `token=${token}`
-      });
-      this.socket.current.emit("join room", 1);
+            
+      this.context.socket.emit("join room", 1);
     });
   }
 
