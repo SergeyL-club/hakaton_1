@@ -125,9 +125,26 @@ const Room = (props) => {
 
     return (
         <div>
-            <video autoPlay ref={userVideo} />
-            <video autoPlay ref={partnerVideo} />
+            <audio autoPlay ref={userVideo} />
+            <audio autoPlay ref={partnerVideo} />
+            <AudioSpectrum
+              id="audio-canvas"
+              height={200}
+              width={300}
+              audioId={userVideo}
+              capColor={'red'}
+              capHeight={2}
+              meterWidth={2}
+              meterCount={512}
+              meterColor={[
+                {stop: 0, color: '#f00'},
+                {stop: 0.5, color: '#0CD7FD'},
+                {stop: 1, color: 'red'}
+              ]}
+              gap={4}
+            />
         </div>
+
     );
 };
 
