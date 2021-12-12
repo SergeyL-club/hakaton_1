@@ -16,7 +16,9 @@ export default class Room extends Component {
     navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
       this.stream.current = stream;
       
-      this.socket.current = io("http://192.168.107.126:8181");
+      this.socket.current = io("http://192.168.107.126:8181", {
+        transports: ["websocket"]
+      });
       this.socket.current.emit("join room", window.location.pathname);
       this.socket.current.on("other user", userID => {
         this.callUser(userID);
