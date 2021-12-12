@@ -27,10 +27,12 @@ class Calls extends Component{
                                 }}/>
                                 <div className={classes.InfoPeop}>
                                     <h1>Сергей</h1>
-                                    <h2>Дада</h2>
-                                    
+                                    <h2>WebRTC-мастер</h2>  
                                 </div>
-                                
+                                <div className={classes.InfoPeop}>
+                                    <h1>Никита</h1>
+                                    <h2>Просто человек</h2>  
+                                </div>
                                 </div>
                                 <img src={micro}/>
                                 </div>
