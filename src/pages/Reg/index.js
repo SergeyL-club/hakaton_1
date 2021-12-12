@@ -48,7 +48,11 @@ class Reg extends Component{
         else return(
             <div className={classes.Deks}>
                 <div className={classes.Form}>
-                    <img src={Icon} alt="icon" />
+                        <Link to={{
+                            pathname: '/personalArea'
+                        }}>
+                            <img src={Icon} alt="icon" />
+                        </Link>
                     <h1>Создание аккаунта</h1>
                     <p>Ниже введите свои регистрационные данные, чтобы использовать сервис</p>
                     <form ref={this.form}>

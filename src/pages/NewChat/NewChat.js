@@ -3,6 +3,7 @@ import classes from './NewChat.module.css'
 import Icon from './Icon.png'
 import axios from "../../axios/axios";
 import CustomSelect from "../CustomSelect";
+import { Link, Redirect } from "react-router-dom";
 
 class NewChat extends Component{
 
@@ -84,17 +85,22 @@ class NewChat extends Component{
     }
 
     render(){
-        return(
+        if(this.state.redirect) return <Redirect to="/personalArea" /> 
+        else return(
             <>
                 <div className={classes.Form}>
-                    <img src={Icon} alt="icon" />
+                        <Link to={{
+                            pathname: '/personalArea'
+                        }}>
+                            <img src={Icon} alt="icon" />
+                        </Link>
                     <h1>Создание чата</h1>
                     <p>Создайте новый чат</p>
                     <form ref={this.form}>
                         <input placeholder="Название чата" name="name"/>
                         <CustomSelect setState={this.setStateAccounts} accounts={this.state.accounts} />
                         <div className={classes.Buttons}>
-                            <button type="button" onClick={() => this.create()}>Войти</button>
+                            <button type="button" onClick={() => this.create()}>Создать</button>
                         </div>
                     </form>
                 </div>

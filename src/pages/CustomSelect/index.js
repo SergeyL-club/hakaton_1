@@ -22,6 +22,13 @@ export default class CustomSelect extends Component {
       Open: this.state.open,
       Close: !this.state.open
     });
+
+    if(this.state.open){
+      document.querySelector('button').style.borderRadius = '0px'
+    }else{
+      document.querySelector('button').style.borderRadius = '0px'
+    }
+
     return (
       <ul>
         <button type='button' onClick={() => this.setOpen()}>Список пользователей</button>

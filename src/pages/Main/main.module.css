@@ -24,7 +24,7 @@
     margin-bottom: 25px;
 }
 
-.Main_content a{
+.Main_content .Link{
     margin-top: 25px;
     text-decoration: none;
     background: linear-gradient(180deg, #0B23FF 0%, rgba(12, 36, 255, 0.38) 182.22%);
@@ -37,6 +37,6 @@
     transition: ease-in-out 0.3s;
 }
 
-.Main_content a:hover{
+.Main_content .Link:hover{
     opacity: 0.6;
 }
