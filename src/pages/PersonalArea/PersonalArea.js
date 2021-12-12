@@ -3,12 +3,10 @@ import classes from './personalArea.module.css'
 import { Link, Redirect } from 'react-router-dom'
 import axios from "../../axios/axios";
 import NewChat from "../NewChat/NewChat";
-import { SocketContext } from '../../contexts/socket.context'
-import menu from './menu.png'
+import menu from './menu.png';
 
 
 class PersonalArea extends Component{
-    static contextType = SocketContext
     
     constructor(props){
         super(props);
@@ -16,7 +14,11 @@ class PersonalArea extends Component{
         let token = localStorage.getItem("token");
         if(!token) {
             this.state = {
-                redirect: true
+                redirect: true,
+                chats: [],
+                con: [],
+                isNewChatForm: false,
+                block: 'none'
             }
         } else {
             this.state = {
@@ -49,7 +51,7 @@ class PersonalArea extends Component{
                     token
                 }
             }).then(res => {
-                this.setState({
+                if(res.data.data.chats) this.setState({
                     chats: res.data.data.chats
                 })
             }).catch(e => {
@@ -75,7 +77,8 @@ class PersonalArea extends Component{
     }
 
     render(){
-         return(
+        if(this.state.redirect) return <Redirect to="/"/>
+        else return(
             <>
                 { this.state.isNewChatForm ? <NewChat setChats={this.setChats} setClose={this.setCloseFormNewChat} /> : null }
                 <div className={classes.PersonalArea}>
@@ -88,12 +91,12 @@ class PersonalArea extends Component{
                             <button>Выйти из аккаунта</button>
                         </div>
                         <div className={classes.Up_Block}>
-                            <img src={menu} id="menu"/>
-                            <input value='Поиск' />
+                            <img src={menu} alt="menu" id="menu"/>
+                            <input name="search" value='Поиск' />
                         </div>
                     {this.state.chats.map((item, key) => 
                         <Link key={key}
-                        to='/Auth'>
+                        to={'/room/'+item.id}>
                             <div className={classes.Contact}>
                                 <h1>{item.name}</h1>
                             </div> 
@@ -108,8 +111,8 @@ class PersonalArea extends Component{
                             <button>Выйти из аккаунта</button>
                         </div>
                         <div className={classes.Up_Block}>
-                            <img src={menu} id="menu"/>
-                            <input placeholder="Поиск"/>
+                            <img src={menu} alt="menu" id="menu"/>
+                            <input name="search" placeholder="Поиск"/>
                         </div>
                         <h1 style={{marginTop: '25px'}}>Жаль, но чатов нет. <br/> НОООО - вы можете его создать :)</h1>
                     </div>

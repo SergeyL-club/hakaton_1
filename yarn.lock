@@ -8977,6 +8977,11 @@ react-mic@^12.4.6:
     prop-types "^15.5.10"
     react-ga "^2.2.0"
 
+react-recorder@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-recorder/-/react-recorder-1.0.0.tgz#ed05c20ce2284af1d4c894ea35903bdb32095fcb"
+  integrity sha1-7QXCDOIoSvHUyJTqNZA72zIJX8s=
+
 react-refresh@^0.8.3:
   version "0.8.3"
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.8.3.tgz"

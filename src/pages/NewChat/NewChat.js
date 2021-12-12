@@ -67,6 +67,7 @@ class NewChat extends Component{
                 }
             }).then(res => {
                 this.props.setChats(res.data.data.chats);
+                this.props.setClose();
             }).catch(e => {
                 console.log(e);
             })
