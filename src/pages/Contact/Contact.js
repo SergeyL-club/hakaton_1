@@ -16,7 +16,7 @@ class NewChat extends Component{
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
 
         let token = localStorage.getItem('token')
         axios.get("/contact/getList", {
@@ -54,19 +54,20 @@ class NewChat extends Component{
                             </Link>
                         </div>
                         <div className={classes.Button_List}>
-                            {this.state.contacts.map((item) => {
-                                <div className={classes.CardPeop}>
-                                <img src={Icon} style={{
-                                    maxHeight: '75px'
-                                }}/>
-                                <div className={classes.InfoPeop}>
-                                    <h1>{item.name}</h1>
-                                    <h2>{item.name}</h2>
-                                    
-                                </div>
-                                <img src={micro}/>
-                                </div>
-                            })}
+                            {this.state.contacts.map((item, key) => 
+                                    <div className={classes.CardPeop} key={key}>
+                                    <img src={Icon} style={{
+                                        maxHeight: '75px'
+                                    }}/>
+                                    <div key={key} className={classes.InfoPeop}>
+                                        <h1>{item.account.nickname}</h1>
+                                        <h2>{item.account.phone}</h2>
+                                        
+                                    </div>
+                                    <img src={micro}/>
+                                    </div>
+                                
+                            )}
                         </div>
                     </div>
                 </div>
