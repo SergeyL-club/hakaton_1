@@ -125,6 +125,11 @@ const Room = (props) => {
 
     return (
         <div>
+            <button onClick={() => userVideo.current.start()}>Start</button>
+            <button onClick={() => userVideo.current.stop()}>Stop</button>
+            -------------------------------------------------------------
+            <button onClick={() => partnerVideo.current.start()}>Start</button>
+            <button onClick={() => partnerVideo.current.stop()}>Stop</button>
             <video autoPlay ref={userVideo} />
             <video autoPlay ref={partnerVideo} />
         </div>
