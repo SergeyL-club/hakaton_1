@@ -19,7 +19,7 @@ const Room = (props) => {
               transports: ["websocket"],
               query: `token=${token}`
             });
-            socketRef.current.emit("join room", props.match.params.roomID);
+            socketRef.current.emit("join room", 10);
 
             socketRef.current.on('other user', userID => {
                 callUser(userID);
