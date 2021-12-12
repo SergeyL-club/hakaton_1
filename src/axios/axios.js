@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL = 'https://hack.oksei.ru:8080/'
+const URL = 'https://hack.okeit.edu:8080/'
 
 export default axios.create({
   url: URL,
