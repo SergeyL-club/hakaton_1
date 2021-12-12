@@ -1,0 +1,84 @@
+.Deks{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #E5E5E5;
+}
+
+.Card{
+    background: #FFFFFF;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+    min-width: 500px;
+    height: max-content;
+}
+
+.Card .Card_Info{
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+    background-color: #EEEEEE;
+    width: 100%;
+    height: max-content;
+    padding: 20px 15px;
+    gap: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.Card .Card_Info a{
+    height: max-content;
+}
+
+.Card .Card_Info h1{
+    font-size: 26px;
+    font-weight: 400;
+}
+
+.Card .Card_Info a img{
+    object-fit: cover;
+}
+
+.Card .Card_Info img{
+    object-fit: contain;
+}
+
+.Card .Button_List{
+    width: 100%;
+}
+
+.Card .CardPeop{
+    
+    padding: 15px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: max-content;
+    border-bottom: 0.5px solid #EEEEEE;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+}
+
+.Card .CardPeop img{
+    object-fit: contain;
+}
+
+.Card .CardPeop #icon{
+    height: 75px !important;
+}
+
+.Card .InfoPeop h1{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.Card .InfoPeop h2{
+    font-size: 19px;
+    font-weight: 300;
+}
+
+.Card .CardPeop:hover{
+    background-color: #EEEEEE;
+}
